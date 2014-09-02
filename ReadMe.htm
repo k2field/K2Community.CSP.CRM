@@ -1,0 +1,917 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	background:#C2D69B;
+	font-size:16.0pt;
+	font-family:"Arial","sans-serif";
+	letter-spacing:.25pt;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:4.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	font-variant:small-caps;
+	letter-spacing:.25pt;
+	font-weight:normal;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	font-variant:small-caps;
+	letter-spacing:.25pt;
+	font-weight:normal;}
+h4
+	{mso-style-link:"Heading 4 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	font-variant:small-caps;
+	letter-spacing:.5pt;
+	font-weight:normal;}
+h5
+	{mso-style-link:"Heading 5 Char";
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	font-variant:small-caps;
+	color:#943634;
+	letter-spacing:.5pt;
+	font-weight:normal;}
+h6
+	{mso-style-link:"Heading 6 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	font-variant:small-caps;
+	color:#C0504D;
+	letter-spacing:.25pt;
+	font-weight:normal;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{mso-style-link:"Heading 7 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	font-variant:small-caps;
+	color:#C0504D;
+	letter-spacing:.5pt;
+	font-weight:bold;}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{mso-style-link:"Heading 8 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	font-variant:small-caps;
+	color:#943634;
+	font-weight:bold;
+	font-style:italic;}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{mso-style-link:"Heading 9 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	font-variant:small-caps;
+	color:#622423;
+	font-weight:bold;
+	font-style:italic;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:115%;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-transform:uppercase;
+	font-weight:bold;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	text-align:right;
+	border:none;
+	padding:0in;
+	font-size:24.0pt;
+	font-family:"Arial","sans-serif";
+	font-variant:small-caps;}
+p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
+	{mso-style-link:"Subtitle Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:.5in;
+	margin-left:0in;
+	text-align:right;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+strong
+	{color:#C0504D;}
+em
+	{letter-spacing:.5pt;
+	font-weight:bold;}
+pre
+	{mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+	{mso-style-link:"No Spacing Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";}
+p.MsoQuote, li.MsoQuote, div.MsoQuote
+	{mso-style-link:"Quote Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	font-style:italic;}
+p.MsoIntenseQuote, li.MsoIntenseQuote, div.MsoIntenseQuote
+	{mso-style-link:"Intense Quote Char";
+	margin-top:7.0pt;
+	margin-right:1.0in;
+	margin-bottom:7.0pt;
+	margin-left:1.0in;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:115%;
+	background:#C0504D;
+	border:none;
+	padding:0in;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:white;
+	font-weight:bold;
+	font-style:italic;}
+span.MsoSubtleEmphasis
+	{font-style:italic;}
+span.MsoIntenseEmphasis
+	{color:#C0504D;
+	letter-spacing:.5pt;
+	font-weight:bold;
+	font-style:italic;}
+span.MsoSubtleReference
+	{font-weight:bold;}
+span.MsoIntenseReference
+	{font-variant:small-caps;
+	letter-spacing:.25pt;
+	font-weight:bold;
+	text-decoration:underline;}
+span.MsoBookTitle
+	{font-family:"Cambria","serif";
+	font-style:italic;}
+p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
+	{margin:0in;
+	margin-bottom:.0001pt;
+	background:#C2D69B;
+	font-size:16.0pt;
+	font-family:"Arial","sans-serif";
+	letter-spacing:.25pt;
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Arial","sans-serif";
+	letter-spacing:.25pt;
+	background:#C2D69B;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-variant:small-caps;
+	letter-spacing:.25pt;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-variant:small-caps;
+	letter-spacing:.25pt;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	font-variant:small-caps;
+	letter-spacing:.5pt;}
+span.Heading5Char
+	{mso-style-name:"Heading 5 Char";
+	mso-style-link:"Heading 5";
+	font-variant:small-caps;
+	color:#943634;
+	letter-spacing:.5pt;}
+span.Heading6Char
+	{mso-style-name:"Heading 6 Char";
+	mso-style-link:"Heading 6";
+	font-variant:small-caps;
+	color:#C0504D;
+	letter-spacing:.25pt;}
+span.Heading7Char
+	{mso-style-name:"Heading 7 Char";
+	mso-style-link:"Heading 7";
+	font-variant:small-caps;
+	color:#C0504D;
+	letter-spacing:.5pt;
+	font-weight:bold;}
+span.Heading8Char
+	{mso-style-name:"Heading 8 Char";
+	mso-style-link:"Heading 8";
+	font-variant:small-caps;
+	color:#943634;
+	font-weight:bold;
+	font-style:italic;}
+span.Heading9Char
+	{mso-style-name:"Heading 9 Char";
+	mso-style-link:"Heading 9";
+	font-variant:small-caps;
+	color:#622423;
+	font-weight:bold;
+	font-style:italic;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-variant:small-caps;}
+span.SubtitleChar
+	{mso-style-name:"Subtitle Char";
+	mso-style-link:Subtitle;
+	font-family:"Cambria","serif";}
+span.NoSpacingChar
+	{mso-style-name:"No Spacing Char";
+	mso-style-link:"No Spacing";}
+span.QuoteChar
+	{mso-style-name:"Quote Char";
+	mso-style-link:Quote;
+	font-style:italic;}
+span.IntenseQuoteChar
+	{mso-style-name:"Intense Quote Char";
+	mso-style-link:"Intense Quote";
+	color:white;
+	background:#C0504D;
+	font-weight:bold;
+	font-style:italic;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";}
+.MsoChpDefault
+	{font-size:10.0pt;
+	font-family:"Calibri","sans-serif";}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:115%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<h1><span style='font-size:12.0pt'>ABOUT THE <i>CUSTOM SECURITY PROVIDER</i>
+PROJECT TYPE</span></h1>
+
+<p class=MsoNormal align=left style='text-align:left'>The <i>Custom Security
+Provider</i> Project template for Visual Studio is used to create a custom K2
+Security Provider (also known as a &quot;User Manager&quot;) which extends the
+standard set of Security Providers available in K2 as standard. Security
+Providers are used to (optionally) authenticate users, to retrieve user and
+group information at runtime and design-time, to perform Single Sign-On tasks
+for K2 Service Brokers and to set up K2 security permissions. </p>
+
+<p class=MsoNormal align=left style='text-align:left'>Custom Security Providers
+are often used in situations where a custom authentication mechanism is already
+in place, when it is necessary to create a custom Single Sign-On provider to
+use SSO authentication in a SmartObject Service Broker, or when it necessary to
+authenticate non-Active Directory users and none of the existing security
+providers in K2 meet the organization's requirements. </p>
+
+<p class=MsoNormal align=left style='text-align:left'>Custom Security Providers
+are created by implementing the <i>IHostableSecurityProvider</i> interface and
+its related items. Users are implemented as <i>IUser</i> interfaces and Groups
+as <i>IGroup</i> interfaces. In the project template, we have separated the <i>IUser</i>
+and <i>IGroup</i> interfaces into the <i>Principals</i> folder, while the
+security provider itself is implemented in the <i>SecurityProvider.cs</i> file.</p>
+
+<p class=MsoNormal align=left style='text-align:left'>To learn more about
+Custom Security Providers, please refer to the following topic in the K2
+Developer Reference: <br>
+<i>Developer Reference &gt; Extending the K2 Platform &gt; Creating a Custom
+User Manager</i></p>
+
+<p class=MsoNormal align=left style='text-align:left'>Some whitepapers on
+creating custom security providers are also available, for example<br>
+<a href="http://help.k2.com/en/KB000186.aspx">http://help.k2.com/en/KB000186.aspx</a><br>
+<br>
+You can also refer to K2 Underground for samples of custom Security Providers,
+such as:<br>
+<a
+href="http://www.k2underground.com/groups/k2_blackpearl_custom_security_provider/default.aspx">http://www.k2underground.com/groups/k2_blackpearl_custom_security_provider/default.aspx</a><br>
+<a
+href="http://www.k2underground.com/groups/sharepoint_user_profile/default.aspx%20">http://www.k2underground.com/groups/sharepoint_user_profile/default.aspx</a>
+</p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=649
+ style='width:486.9pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=115 valign=top style='width:1.2in;border:solid windowtext 1.0pt;
+  background:#D9D9D9;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>Created by</b></p>
+  </td>
+  <td width=534 valign=top style='width:400.5pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+  text-align:left;line-height:normal'>Neil Maartens (K2 Learning) <br>
+  neil@k2.com</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=115 valign=top style='width:1.2in;border:solid windowtext 1.0pt;
+  border-top:none;background:#D9D9D9;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><b>Latest Update</b></p>
+  </td>
+  <td width=534 valign=top style='width:400.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+  text-align:left;line-height:normal'>14 January 2012</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=649 colspan=2 valign=top style='width:486.9pt;border:solid windowtext 1.0pt;
+  border-top:none;background:#D9D9D9;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+  text-align:left;line-height:normal'><b>Update Notes</b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=115 valign=top style='width:1.2in;border:solid windowtext 1.0pt;
+  border-top:none;background:#D9D9D9;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+  text-align:left;line-height:normal'>4 January 2013</p>
+  </td>
+  <td width=534 valign=top style='width:400.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+  text-align:left;line-height:normal'>Created the Project Template</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:9.5pt;line-height:115%'>&nbsp;</span></p>
+
+<h1><span style='font-size:12.0pt'>DEVELOPMENT TASKS</span></h1>
+
+<p class=MsoNormal>To implement a Custom Security Provider with this project template,
+you need to complete the following tasks:</p>
+
+<p class=MsoListParagraphCxSpFirst align=left style='text-align:left;
+text-indent:-.25in'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The target .NET Framework for the project should be set to .NET 3.5
+(This should be set correctly by the project template)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='text-align:left;
+text-indent:-.25in'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Implement any code initialization or cleanup in the <i><span
+style='font-family:Consolas'>Service Methods</span></i> region</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='text-align:left;
+text-indent:-.25in'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>If the security provider is used to authenticate users, return true in
+the <i><span style='font-family:Consolas'>RequiresAuthentication</span></i>
+method</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='text-align:left;
+text-indent:-.25in'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>If the security provider is used for authentication, implement the code
+to authenticate the user in the <i><span style='font-family:Consolas'>AuthenticateUser</span></i>
+method. The <i><span style='font-family:Consolas'>ExtraData</span></i>
+parameter is there so that you can pass additional information into the method
+alogn with the username and password. <br>
+The <i><span style='font-family:Consolas'>Login</span></i> method is only for
+backward compatibility and does not need to be implemented, unless you are
+connecting to the security provider with the K2.net 2003 K2ROM dll.</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='text-align:left;
+text-indent:-.25in'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Implement the User interaction methods in the <i><span style='font-family:
+Consolas'>User Principal Interaction Methods</span></i> region. </p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-family:Consolas'>GetUser</span><br>
+return a specific <i><span style='font-family:Consolas'>IUser</span></i> based
+on their username. The override method with <i><span style='font-family:Consolas'>ExtraData</span></i>
+is used when you need to pass additional data along with the getuser method. <br>
+<br>
+</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-family:Consolas'>QueryUserProperties</span><br>
+define a collection of the properties a user has. You would not normally need
+to change this collection of items unless you want to return additional custom
+properties for a user.</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-family:Consolas'>FindUsers</span><br>
+implement the code to return an <i><span style='font-family:Consolas'>IUserCollection</span></i>
+object based on a group name (Essentially, you want a collection of the users
+in a specific group). Note that the GroupName could contain wildcard characters.
+If you wish to support wildcards, implement code to handle the StartsWith,
+Contains and EndsWith scenarios. An override accepts <span style='font-family:
+Consolas'>ExtraData</span> as part of the input values. <br>
+<br>
+</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='text-align:left;
+text-indent:-.25in'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Implement the Group interaction methods in the <i><span
+style='font-family:Consolas'>Group Principal Interaction Methods</span></i>
+region. </p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-family:Consolas'>GetGroup</span><br>
+return a specific <i><span style='font-family:Consolas'>IGroup</span></i> based
+on the group name. The override method with <i><span style='font-family:Consolas'>ExtraData</span></i>
+is used when you need to pass additional data along with the getgroup method. <br>
+<br>
+</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-family:Consolas'>QueryGroupProperties</span><br>
+define a collection of the properties a group has. You would not normally need
+to change this collection of items unless you want to return additional custom
+properties for a group.</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-family:Consolas'>FindGroups</span><br>
+implement the code to return an <i><span style='font-family:Consolas'>IGroupCollection</span></i>
+object based on a user name. (Essentially, you want to return all the groups
+that a particular user is a member of). An override accepts ExtraData as part
+of the input values.</p>
+
+<p class=MsoListParagraphCxSpLast>&nbsp;</p>
+
+<p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+text-align:left;background:#BFBFBF'><b><span style='background:#BFBFBF'>Note: </span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left'>We strongly advise that
+you use the K2 Logging context (implemented in the project template as a local
+variable called <span style='font-family:Consolas'>_logger</span>) to output
+Debug, Info and Error-level warning messages at relevant times. User
+authentication for a brand-new security provider can require some
+troubleshooting and implementing logging will make it easier for you to test
+and troubleshoot the provider. Any logging output will be output to the
+standard K2 logging targets. (If you prefer, you may also implement your own
+logging mechanism, but implement some kind of logging. It will make your life
+easier). <br>
+Refer to the method <span style='font-family:Consolas'>AuthenticateUser</span>
+for an example of using the <span style='font-family:Consolas'>_logger</span>
+object.</p>
+
+<h1><span style='font-size:12.0pt'>DEPLOYING AND INSTALLING CUSTOM SECURITY
+PROVIDERS</span></h1>
+
+<p class=MsoNormal align=left style='text-align:left'>Custom Security providers
+only need to be copied to and registered on the K2 application servers. It is
+not necessary to copy the security provider to developer workstations or web
+servers that run SharePoint or the K2 web sites.  For security purposes, K2
+will only load assemblies that have been registered in the K2 database. Steps 1
+and 3 of this procedure will allow K2 to load your custom security provider.</p>
+
+<p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+text-align:left;background:#D9D9D9'><b><span style='font-size:11.0pt;
+line-height:115%'>K2 Application Server</span></b><b><span style='font-size:
+12.0pt;line-height:115%'> </span></b>(in other words, all servers running the
+K2 service)</p>
+
+<p class=MsoNormal align=left style='text-align:left'>Installing a custom
+Security Provider is a 3-step process.</p>
+
+<p class=MsoListParagraphCxSpFirst align=left style='text-align:left;
+text-indent:-.25in'><b>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><b>Edit K2HostServer configuration file to enable assembly
+registration </b>(only needs to be done once)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Stop the K2 Service</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>Make a backup of the <i><span style='font-family:Consolas'>K2HostServer.exe.config</span></i><i>
+file</i></p>
+
+<p class=MsoListParagraphCxSpLast align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Edit the file <i><span style='font-family:Consolas'>K2HostServer.exe.config</span></i>
+(or <i><span style='font-family:Consolas'>K2HostServer.config</span></i>,
+depending on your version of K2) and enable assembly registration by changing
+the <br>
+<span style='font-family:Consolas'>    &lt;add
+key=&quot;useassemblyregistration&quot; value=&quot;false&quot; /&gt;<br>
+</span>to<br>
+<span style='font-family:Consolas'>    &lt;add
+key=&quot;useassemblyregistration&quot; value=&quot;true&quot; /&gt;</span></p>
+
+<p class=MsoNormal>                        By default, this file is located at <i>[Program
+Files]\K2 blackpearl\Host Server\Bin</i></p>
+
+<p class=MsoListParagraphCxSpFirst align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>d.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>Start the K2 service<br>
+<br>
+</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='text-align:left;
+text-indent:-.25in'><b>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><b>Copy the security provider dll and dependencies to the K2 server</b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Stop the K2 service </p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>Copy the security provider .dll file to the K2 host server's <i><span
+style='font-family:Consolas'>securityproviders</span></i> directory. By
+default, this directory is located at<br>
+<i>[Program Files]\K2 blackpearl\Host Server\Bin\securityproviders</i></p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left'>Copy any dependencies that are not already on the K2 server to
+the host server bin directory <br>
+Default: <i>[Program Files]\K2 blackpearl\Host Server\Bin\<br>
+</i>or install the dependencies in the GAC.</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Start the K2 service<br>
+<br>
+</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='text-align:left;
+text-indent:-.25in'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b>Register the security provider in the K2 database</b> (if you do not
+change the name, version number or public key token for the assembly this only
+needs to be done once)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Obtain the public key token for the security provider dll. The easiest
+way to do this is to run the sn.exe tool (part of Visual Studio command line)
+and target the security provider assembly. Example: <br>
+<span style='font-family:Consolas'>sn -T &quot;C:\Program Files (x86)\K2
+blackpearl\Host Server\BIN\SecurityProviders\K2Community.CSP.CRM.dll&quot;</span></p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>Make a note of the public key token</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Edit the SQL script <i>SQLScriptToRegisterProvider.sql</i> (which is
+part of the project template) and change the variable <i><span
+style='font-family:Consolas'>@PublicKeyToken</span></i> to the value you obtain
+in step b</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>d.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>Change the value for <i><span style='font-family:Consolas'>@SecurityLabel</span></i>
+to be the label for your custom security provider. (For reference, K2 uses
+&quot;K2&quot; for Active Directory, &quot;SQL&quot; for the SQL user manager
+and there may be others.)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>e.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Verify that the values for <i><span style='font-family:Consolas'>@AssemblyName</span></i><i>,
+</i><i><span style='font-family:Consolas'>@ClassName</span></i><i>, </i><i><span
+style='font-family:Consolas'>@AssemblyVersionNumber</span></i> and <i><span
+style='font-family:Consolas'>@AssemblyCulture</span></i><span style='font-family:
+Consolas'> </span>are correct, and change them if required.</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>f.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Stop the K2 Service</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>g.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>Back up the K2 database</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>h.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Open a SQL query window, and run the modified script to register your
+custom security provider with the K2 server.</p>
+
+<p class=MsoListParagraphCxSpLast align=left style='margin-left:1.0in;
+text-align:left;text-indent:-.25in'>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Start the K2 Service. If any errors are reported, verify that the values
+you used for the variables in the SQL script are correct.</p>
+
+<p class=MsoNormal align=left style='text-align:left'>Note: when you rebuild
+the project, you may only need to perform step 2. If the assembly name, public
+key token and version number do not change, you do not need to run the SQL
+script again. You will have to stop the K2 service before copying the security
+provider dll since the dll may be in-use while the service is running. </p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><span style='font-size:9.5pt'>&nbsp;</span></p>
+
+<h1><span style='font-size:12.0pt'>CUSTOM BUILD CONFIGURATIONS</span></h1>
+
+<p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+text-align:left;line-height:normal;text-autospace:none'>To assist with
+developing the custom inline function project, the following custom build
+configurations are available in this project. <br>
+<i>Note: You may need to edit the pre- and post-build commands to copy the output
+files to the correct location for your environment. The custom build
+configurations are only set up for scenarios where your development environment
+and K2 environment are on the same machine (for example, when you develop using
+one of the standard K2 virtual machines or if you have a local development
+server)</i></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><span style='font-size:9.5pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:#D9D9D9;text-autospace:none'><b><span style='font-size:11.0pt'>DEBUGLocalK2Server</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><span style='font-size:9.5pt'>Restarts the K2
+service and copies the security provider .dll file and .pdb file to the local
+K2 server only</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><span style='font-size:9.5pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><span style='font-size:9.5pt'>&nbsp;</span></p>
+
+<h1><span style='font-size:12.0pt'>DEBUGGING THE CUSTOM SECURITY PROVIDER</span></h1>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><span style='font-size:9.5pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><b><span style='font-size:11.0pt'>Runtime Debugging</span></b></p>
+
+<p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+text-align:left;line-height:normal;text-autospace:none'><i>Warning: attaching
+to the K2 host server process and hitting a breakpoint will suspend all
+execution on the K2 server, so use this approach carefully in any shared K2
+environment</i></p>
+
+<p class=MsoListParagraphCxSpFirst align=left style='margin-bottom:0in;
+margin-bottom:.0001pt;text-align:left;text-indent:-.25in;line-height:normal;
+text-autospace:none'>a)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Add breakpoints to your code</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-bottom:0in;
+margin-bottom:.0001pt;text-align:left;text-indent:-.25in;line-height:normal;
+text-autospace:none'>b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>Copy the assembly and .pdb file to the K2 host server as described in
+the &quot;Deploying and Installing&quot; section</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-bottom:0in;
+margin-bottom:.0001pt;text-align:left;text-indent:-.25in;line-height:normal;
+text-autospace:none'>c)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Start the K2 service and then use Visual Studio's <i>Debug</i> &gt; <i>Attach</i>
+to process option to attach to the <i>K2HostServer.exe</i> process<br>
+Note: you may need to check the options Show Processes from all users&quot; and
+&quot;Show Processes in all sessions&quot; before the K2HostServer.exe process
+will show up.<br>
+Note: if debugging a remote K2 server, you will need to enable remote
+debugging. See <a
+href="http://msdn.microsoft.com/en-us/library/vstudio/y7f5zaaa.aspx">http://msdn.microsoft.com/en-us/library/vstudio/y7f5zaaa.aspx</a>
+</p>
+
+<p class=MsoListParagraphCxSpMiddle align=left style='margin-bottom:0in;
+margin-bottom:.0001pt;text-align:left;text-indent:-.25in;line-height:normal;
+text-autospace:none'>d)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>Run the security provider by logging in as a user with the custom
+security provider label, or by using the User/Group context browser in a K2
+design tool to explore the list of users. Your breakpoint should be hit.</p>
+
+<p class=MsoListParagraphCxSpLast align=left style='margin-bottom:0in;
+margin-bottom:.0001pt;text-align:left;text-indent:-.25in;line-height:normal;
+text-autospace:none'>e)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Step through and debug your code. </p>
+
+<p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+text-align:left;line-height:normal;text-autospace:none'>&nbsp;</p>
+
+<p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+text-align:left;line-height:normal;text-autospace:none'>&nbsp;</p>
+
+<p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+text-align:left;background:#BFBFBF'><b><span style='background:#BFBFBF'>Note: </span></b></p>
+
+<p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+text-align:left;line-height:normal;text-autospace:none'>To test your security
+provider authentication, you will need to construct a K2 connection string with
+your security provider label (the value you used in the  <i><span
+style='font-family:Consolas'>@SecurityLabel</span></i> variable of the SQL
+script). Below is a code sample that demonstrates how to construct a K2
+connection using the <i>SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder</i>
+class</p>
+
+<p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+text-align:left;line-height:normal;text-autospace:none'>&nbsp;</p>
+
+<pre><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://SourceCode.HostClientAPI:4.0.0.0:16a2c5aaaa1b130d/SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder"
+title=SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder><span
+style='color:#002060'>SCConnectionStringBuilder</span></a><span
+style='color:#002060'> <b>builder</b> = new </span><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://SourceCode.HostClientAPI:4.0.0.0:16a2c5aaaa1b130d/SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder/.ctor()"
+title="SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder.SCConnectionStringBuilder();"><span
+style='color:#002060'>SCConnectionStringBuilder</span></a><span
+style='color:#002060'>();</span></pre><pre><span style='color:#002060'>builder.</span><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://SourceCode.HostClientAPI:4.0.0.0:16a2c5aaaa1b130d/SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder/property:Host:String"
+title="string SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder.Host { ... }"><span
+style='color:#002060'>Host</span></a><span style='color:#002060'> = Server;</span></pre><pre><span
+style='color:#002060'>builder.</span><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://SourceCode.HostClientAPI:4.0.0.0:16a2c5aaaa1b130d/SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder/property:Port:UInt32"
+title="uint SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder.Port { ... }"><span
+style='color:#002060'>Port</span></a><span style='color:#002060'> = Port;</span></pre><pre><span
+style='color:#002060'>builder.</span><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://SourceCode.HostClientAPI:4.0.0.0:16a2c5aaaa1b130d/SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder/property:SecurityLabelName:String"
+title="string SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder.SecurityLabelName { ... }"><span
+style='color:#002060'>SecurityLabelName</span></a><span style='color:#002060'> = SecurityLabel; //use your security label here</span></pre><pre><span
+style='color:#002060'>builder.</span><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://SourceCode.HostClientAPI:4.0.0.0:16a2c5aaaa1b130d/SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder/property:UserID:String"
+title="string SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder.UserID { ... }"><span
+style='color:#002060'>UserID</span></a><span style='color:#002060'> = UserName;</span></pre><pre><span
+style='color:#002060'>builder.</span><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://SourceCode.HostClientAPI:4.0.0.0:16a2c5aaaa1b130d/SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder/property:Password:String"
+title="string SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder.Password { ... }"><span
+style='color:#002060'>Password</span></a><span style='color:#002060'> = Password;</span></pre><pre><span
+style='color:#002060'>builder.</span><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://SourceCode.HostClientAPI:4.0.0.0:16a2c5aaaa1b130d/SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder/property:Integrated:Boolean"
+title="bool SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder.Integrated { ... }"><span
+style='color:#002060'>Integrated</span></a><span style='color:#002060'> = false;</span></pre><pre><span
+style='color:#002060'>builder.</span><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://SourceCode.HostClientAPI:4.0.0.0:16a2c5aaaa1b130d/SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder/property:IsPrimaryLogin:Boolean"
+title="bool SourceCode.Hosting.Client.BaseAPI.SCConnectionStringBuilder.IsPrimaryLogin { ... }"><span
+style='color:#002060'>IsPrimaryLogin</span></a><span style='color:#002060'> = true;</span></pre><pre><span
+style='color:#002060'>Connection </span><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://Ecc.K2Lib:1.0.0.0:d171b0fc459ee7da/Ecc.K2Lib.K2Connection/_connection:SourceCode.Workflow.Client.Connection"
+title="Connection Ecc.K2Lib.K2Connection._connection;"><span style='color:#002060'>_connection</span></a><span
+style='color:#002060'> = new SourceCode.Workflow.Client.</span><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://SourceCode.Workflow.Client:4.0.0.0:16a2c5aaaa1b130d/SourceCode.Workflow.Client.Connection/.ctor()"
+title="SourceCode.Workflow.Client.Connection.Connection();"><span
+style='color:#002060'>Connection</span></a><span style='color:#002060'>();</span></pre><pre><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://Ecc.K2Lib:1.0.0.0:d171b0fc459ee7da/Ecc.K2Lib.K2Connection/_connection:SourceCode.Workflow.Client.Connection"
+title="Connection Ecc.K2Lib.K2Connection._connection;"><span style='color:#002060'>_connection</span></a><span
+style='color:#002060'>.<a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://SourceCode.Workflow.Client:4.0.0.0:16a2c5aaaa1b130d/SourceCode.Workflow.Client.Connection/Open(String,String)"
+title="void SourceCode.Workflow.Client.Connection.Open(string, string);"><span
+style='color:#002060'>Open</span></a>(Server, builder.</span><a
+href="http://www.aisto.com/roeder/dotnet/Default.aspx?Target=code://mscorlib:2.0.0.0:b77a5c561934e089/System.Object/ToString():String"
+title="string System.Object.ToString();"><span style='color:#002060'>ToString</span></a><span
+style='color:#002060'>());</span></pre>
+
+<p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;
+text-align:left;line-height:normal;text-autospace:none'>&nbsp;</p>
+
+<h1><span style='font-size:12.0pt'>KNOWN ISSUES</span></h1>
+
+<p class=MsoNormal>No known issues with the project type.</p>
+
+</div>
+
+</body>
+
+</html>
