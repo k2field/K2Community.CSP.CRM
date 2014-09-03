@@ -28,8 +28,8 @@ DECLARE @OrganizationUri nvarchar(511)
 --TODO: set and verify these values
 SET @PublicKeyToken = 'TODO' --the public key token for the assembly. use sn -T "[Path]\securityprovider.dll" to obtain the public key token
 SET @SecurityLabel = 'CRMCM' --the security label for your custom security provider. NOrmalyl passed in front of the username so K2 knows which security provider to use for the user
-SET @ServerAddress = 'crm/GeodesysProto12'
-SET @OrganizationName = 'GeodesysProto12'
+SET @ServerAddress = 'TODO'
+SET @OrganizationName = 'TODO'
 SET @DiscoveryUri = 'http://' +  @ServerAddress + '/XRMServices/2011/Discovery.svc'
 SET @OrganizationUri = 'http://' + @ServerAddress + '/XRMServices/2011/Organization.svc'
 SET @AssemblyName = 'K2Community.CSP.CRM' --name of the assembly, excluding .dll
