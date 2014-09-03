@@ -991,5 +991,6 @@ namespace Microsoft.Crm.Services.Utility
 	#endregion
 	#endregion
 	#endregion
+
 }
 //</snippetDeviceIdManager>

@@ -12,6 +12,7 @@
 //  IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 //  PARTICULAR PURPOSE.
 // =====================================================================
+// Modified by Lee Adams (Champion Systems Limited) as Open Source
 //<snippetCrmServiceHelper>
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,6 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Discovery;
 using Microsoft.Crm.Services.Utility;
-//
 
 namespace K2Community.CSP.CRM
 {
@@ -189,143 +189,21 @@ namespace K2Community.CSP.CRM
         #endregion Static methods
 
         #region Public methods
+
+        public ServerConnection(string XMLconfigurations)
+        {
+            this.ReadConfigurations(XMLconfigurations);
+        }
+
         /// <summary>
         /// Obtains the server connection information including the target organization's
         /// Uri and user logon credentials from the user.
         /// </summary>
         public virtual Configuration GetServerConfiguration()
         {
-            Boolean ssl;
-            Boolean addConfig;
-            int configNumber;
-            // Read the configuration from the disk, if it exists, at C:\Users\<username>\AppData\Roaming\CrmServer\Credentials.xml.
-            Boolean isConfigExist = ReadConfigurations();
-
-            // Check if server configuration settings are already available on the disk.
-            if (isConfigExist)
-            {
-                // List of server configurations that are available from earlier saved settings.
-                Console.Write("\n(0) Add New Server Configuration (Maximum number up to 9)\t");
-                for (int n = 0; n < configurations.Count; n++)
-                {
-                    String user;
-
-                    switch (configurations[n].EndpointType)
-                    {
-                        case AuthenticationProviderType.ActiveDirectory:
-                            if (configurations[n].Credentials != null)
-                                user = configurations[n].Credentials.Windows.ClientCredential.Domain + "\\"
-                                    + configurations[n].Credentials.Windows.ClientCredential.UserName;
-                            else
-                                user = "default";
-                            break;
-                        default:
-                            if (configurations[n].Credentials != null)
-                                user = configurations[n].Credentials.UserName.UserName;
-                            else
-                                user = "default";
-                            break;
-                    }
-
-                    Console.Write("\n({0}) Server: {1},  Org: {2},  User: {3}\t",
-                        n + 1, configurations[n].ServerAddress, configurations[n].OrganizationName, user);
-                }
-
-                Console.WriteLine();
-
-                Console.Write("\nSpecify the saved server configuration number (1-{0}) [{0}] : ", configurations.Count);
-                String input = "1";
-                Console.WriteLine();
-                if (input == String.Empty) input = configurations.Count.ToString();
-                if (!Int32.TryParse(input, out configNumber)) configNumber = -1;
-
-                if (configNumber == 0)
-                {
-                    addConfig = true;
-                }
-                else if (configNumber > 0 && configNumber <= configurations.Count)
-                {
-                    // Return the organization Uri.
-                    config = configurations[configNumber - 1];
-                    // Reorder the configuration list and save it to file to save the recent configuration as a latest one. 
-                    if (configNumber != configurations.Count)
-                    {
-                        Configuration temp = configurations[configurations.Count - 1];
-                        configurations[configurations.Count - 1] = configurations[configNumber - 1];
-                        configurations[configNumber - 1] = temp;                        
-                    }
-                    addConfig = false;
-                }
-                else
-                    throw new InvalidOperationException("The specified server configuration does not exist.");
-            }
-            else
-                addConfig = true;
-
-            if (addConfig)
-            {
-                // Get the server address. If no value is entered, default to Microsoft Dynamics
-                // CRM Online in the North American data center.
-                config.ServerAddress = GetServerAddress(out ssl);
-
-                if (String.IsNullOrWhiteSpace(config.ServerAddress))
-                    config.ServerAddress = "crm.dynamics.com";
-
-
-                // One of the Microsoft Dynamics CRM Online data centers.
-                if (config.ServerAddress.EndsWith(".dynamics.com", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    // Check if the organization is provisioned in Microsoft Office 365.
-                    if (GetOrgType(config.ServerAddress))
-                    {
-                    config.DiscoveryUri =
-                        new Uri(String.Format("https://disco.{0}/XRMServices/2011/Discovery.svc", config.ServerAddress));
-                    }
-                    else
-                    {
-                    config.DiscoveryUri =
-                        new Uri(String.Format("https://dev.{0}/XRMServices/2011/Discovery.svc", config.ServerAddress));
-
-                    // Get or set the device credentials. This is required for Microsoft account authentication. 
-                    config.DeviceCredentials = GetDeviceCredentials(); 
-                    }
-                }
-                // Check if the server uses Secure Socket Layer (https).
-                else if (ssl)
-                    config.DiscoveryUri =
-                        new Uri(String.Format("https://{0}/XRMServices/2011/Discovery.svc", config.ServerAddress));
-                else
-                    config.DiscoveryUri =
-                        new Uri(String.Format("http://{0}/XRMServices/2011/Discovery.svc", config.ServerAddress));
-
-                // Get the target organization.
-                config.OrganizationUri = GetOrganizationAddress();
-                configurations.Add(config);
-                int length = configurations.Count;
-                int i = length - 2;
-                // Check if a new configuration already exists. 
-                // If found, reorder list to show latest in use.                                   
-                while (i > 0)
-                {
-
-                    if (configurations[configurations.Count - 1].Equals(configurations[i]))
-                    {   
-                        configurations.RemoveAt(i);
-                    }
-                    i--;
-                }
-                // Set max configurations to 9 otherwise overwrite existing one.
-                if (configurations.Count > 9)
-                {
-                    configurations.RemoveAt(0);
-                }                
-            }
-            else
-            {
-                // Get the existing user's logon credentials.
-                config.Credentials = GetUserLogonCredentials(config);
-            }           
-            SaveConfigurations();
+            //TODO:Maybe use other configurations in future
+            // Return the organization Uri.
+            config = configurations[0];
             return config;
         }
 
@@ -376,366 +254,71 @@ namespace K2Community.CSP.CRM
 
         /// <summary>
         /// Reads a server configuration file.
-        /// Read the configuration from disk, if it exists, at C:\Users\YourUserName\AppData\Roaming\CrmServer\Credentials.xml.
+        /// Read the configuration as a parameter
         /// </summary>
-        /// <returns>Is configuration settings already available on disk.</returns>
-        public Boolean ReadConfigurations()
+        /// <param name="configurationXML">The XML containing connection info.</param>
+        /// <returns>Are there any configurations in the XML.</returns>
+        public Boolean ReadConfigurations(string configurationXML)
         {
-            Boolean isConfigExist = false;
+            Boolean doConfigsExist = false;
 
             if (configurations == null)
                 configurations = new List<Configuration>();
 
-            if (File.Exists(CrmServiceHelperConstants.ServerCredentialsFile))
+            XElement configurationsFromFile =
+                XElement.Parse(configurationXML);
+            foreach (XElement config in configurationsFromFile.Nodes())
             {
-                XElement configurationsFromFile = 
-                    XElement.Load(CrmServiceHelperConstants.ServerCredentialsFile);
-                foreach (XElement config in configurationsFromFile.Nodes())
-                {
-                    Configuration newConfig = new Configuration();
-                    var serverAddress = config.Element("ServerAddress");
-                    if (serverAddress != null)
-                        if (!String.IsNullOrEmpty(serverAddress.Value))
-                            newConfig.ServerAddress = serverAddress.Value;
-                    var organizationName = config.Element("OrganizationName");
-                    if (organizationName != null)
-                        if (!String.IsNullOrEmpty(organizationName.Value))
-                            newConfig.OrganizationName = organizationName.Value;
-                    var discoveryUri = config.Element("DiscoveryUri");
-                    if (discoveryUri != null)
-                        if (!String.IsNullOrEmpty(discoveryUri.Value))
-                            newConfig.DiscoveryUri = new Uri(discoveryUri.Value);
-                    var organizationUri = config.Element("OrganizationUri");
-                    if (organizationUri != null)
-                        if (!String.IsNullOrEmpty(organizationUri.Value))
-                            newConfig.OrganizationUri = new Uri(organizationUri.Value);
-                    var homeRealmUri = config.Element("HomeRealmUri");
-                    if (homeRealmUri != null)
-                        if (!String.IsNullOrEmpty(homeRealmUri.Value))
-                            newConfig.HomeRealmUri = new Uri(homeRealmUri.Value);
+                Configuration newConfig = new Configuration();
+                var serverAddress = config.Element("ServerAddress");
+                if (serverAddress != null)
+                    if (!String.IsNullOrEmpty(serverAddress.Value))
+                        newConfig.ServerAddress = serverAddress.Value;
+                var organizationName = config.Element("OrganizationName");
+                if (organizationName != null)
+                    if (!String.IsNullOrEmpty(organizationName.Value))
+                        newConfig.OrganizationName = organizationName.Value;
+                var discoveryUri = config.Element("DiscoveryUri");
+                if (discoveryUri != null)
+                    if (!String.IsNullOrEmpty(discoveryUri.Value))
+                        newConfig.DiscoveryUri = new Uri(discoveryUri.Value);
+                var organizationUri = config.Element("OrganizationUri");
+                if (organizationUri != null)
+                    if (!String.IsNullOrEmpty(organizationUri.Value))
+                        newConfig.OrganizationUri = new Uri(organizationUri.Value);
+                var homeRealmUri = config.Element("HomeRealmUri");
+                if (homeRealmUri != null)
+                    if (!String.IsNullOrEmpty(homeRealmUri.Value))
+                        newConfig.HomeRealmUri = new Uri(homeRealmUri.Value);
 
-                    var vendpointType = config.Element("EndpointType");
-                    if (vendpointType != null)
-                        newConfig.EndpointType =
-                                RetrieveAuthenticationType(vendpointType.Value);
-                    if (config.Element("Credentials").HasElements)
-                    {
-                        newConfig.Credentials =
-                            ParseInCredentials(config.Element("Credentials"), 
-                            newConfig.EndpointType,
-                            newConfig.ServerAddress + ":" + newConfig.OrganizationName + ":" + config.Element("Credentials").Element("UserName").Value);
-                    }
-                    if (newConfig.EndpointType == AuthenticationProviderType.LiveId)
-                    {
-                        newConfig.DeviceCredentials = GetDeviceCredentials();
-                    }
-                    var userPrincipalName = config.Element("UserPrincipalName");
-                    if (userPrincipalName != null)
-                        if (!String.IsNullOrWhiteSpace(userPrincipalName.Value))
-                            newConfig.UserPrincipalName = userPrincipalName.Value;
-                    configurations.Add(newConfig);
+                var vendpointType = config.Element("EndpointType");
+                if (vendpointType != null)
+                    newConfig.EndpointType =
+                            RetrieveAuthenticationType(vendpointType.Value);
+                if (config.Element("Credentials").HasElements)
+                {
+                    newConfig.Credentials =
+                        ParseInCredentials(config.Element("Credentials"),
+                        newConfig.EndpointType,
+                        newConfig.ServerAddress + ":" + newConfig.OrganizationName + ":" + config.Element("Credentials").Element("UserName").Value);
                 }
+                if (newConfig.EndpointType == AuthenticationProviderType.LiveId)
+                {
+                    newConfig.DeviceCredentials = GetDeviceCredentials();
+                }
+                var userPrincipalName = config.Element("UserPrincipalName");
+                if (userPrincipalName != null)
+                    if (!String.IsNullOrWhiteSpace(userPrincipalName.Value))
+                        newConfig.UserPrincipalName = userPrincipalName.Value;
+                configurations.Add(newConfig);
             }
 
             if (configurations.Count > 0)
-                isConfigExist = true;
+                doConfigsExist = true;
 
-            return isConfigExist;
+            return doConfigsExist;
         }
-
-        /// <summary>
-        /// Writes all server configurations to a file.
-        /// </summary>
-        /// <remarks>If the file exists, it is overwritten.</remarks>
-        public void SaveConfigurations()
-        {
-            if (configurations == null)
-                throw new NullReferenceException("No server connection configurations were found.");
-
-            FileInfo file = new FileInfo(CrmServiceHelperConstants.ServerCredentialsFile);
-
-            // Create directory if it does not exist.
-            if (!file.Directory.Exists)
-                file.Directory.Create();
-
-            // Replace the file if it exists.
-            using (FileStream fs = file.Open(FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                using (XmlTextWriter writer = new XmlTextWriter(fs, Encoding.UTF8))
-                {
-                    writer.Formatting = Formatting.Indented;
-                    writer.WriteStartDocument();
-                    writer.WriteStartElement("Configurations");
-                    writer.WriteFullEndElement();
-                    writer.WriteEndDocument();
-                }
-            }
-
-            foreach (Configuration config in configurations)
-                SaveConfiguration(CrmServiceHelperConstants.ServerCredentialsFile, config, true);
-        }
-
-        /// <summary>
-        /// Writes a server configuration to a file.
-        /// </summary>
-        /// <param name="pathname">The file name and system path of the output configuration file.</param>
-        /// <param name="config">A server connection configuration.</param>
-        /// <param name="append">If true, the configuration is appended to the file, otherwise a new file
-        /// is created.</param>
-        public void SaveConfiguration(String pathname, Configuration config, bool append)
-        {
-            if (String.IsNullOrWhiteSpace(pathname)) throw new ArgumentNullException("pathname");
-            if (config == null) throw new ArgumentNullException("config");
-            // Target is the key with which associated credentials can be fetched from windows credentials manager.
-            String target = config.ServerAddress + ":" + config.OrganizationName;
-            if(null != config.Credentials)
-            {
-                switch(config.EndpointType)
-                {
-                    case AuthenticationProviderType.ActiveDirectory:
-                        target = target + ":" + config.Credentials.Windows.ClientCredential.UserName;
-                        break;
-                    case AuthenticationProviderType.LiveId:
-                    case AuthenticationProviderType.Federation:
-                    case AuthenticationProviderType.OnlineFederation:
-                        target = target + ":" + config.Credentials.UserName.UserName;
-                        break;
-                    default:
-                        target = String.Empty;
-                        break;
-                }
-            }            
-
-            XElement configurationsFromFile = XElement.Load(pathname);
-            XElement newConfig =
-                new XElement("Configuration",
-                    new XElement("ServerAddress", config.ServerAddress),
-                    new XElement("OrganizationName", config.OrganizationName),
-                    new XElement("DiscoveryUri",
-                        (config.DiscoveryUri != null)
-                        ? config.DiscoveryUri.OriginalString
-                        : String.Empty),
-                    new XElement("OrganizationUri",
-                        (config.OrganizationUri != null)
-                        ? config.OrganizationUri.OriginalString
-                        : String.Empty),
-                    new XElement("HomeRealmUri",
-                        (config.HomeRealmUri != null)
-                        ? config.HomeRealmUri.OriginalString
-                        : String.Empty),
-                    ParseOutCredentials(config.Credentials, config.EndpointType, target),
-                    new XElement("EndpointType", config.EndpointType.ToString()),
-                    new XElement("UserPrincipalName", 
-                        (config.UserPrincipalName != null)
-                        ? config.UserPrincipalName
-                        : String.Empty)
-                );
-
-            if (append)
-            {
-                configurationsFromFile.Add(newConfig);
-            }
-            else
-            {
-                configurationsFromFile.ReplaceAll(newConfig);
-            }
-
-            using (XmlTextWriter writer = new XmlTextWriter(pathname, Encoding.UTF8))
-            {
-                writer.Formatting = Formatting.Indented;
-                configurationsFromFile.Save(writer);
-            }
-        }
-
-        /// <summary>
-        /// Obtains the user's logon credentials for the target server.
-        /// </summary>
-        /// <param name="config">An instance of the Configuration.</param>
-        /// <returns>Logon credentials of the user.</returns>
-        public static ClientCredentials GetUserLogonCredentials(ServerConnection.Configuration config)
-        {
-            ClientCredentials credentials = new ClientCredentials();
-            String userName;
-            SecureString password;
-            String domain;
-            Boolean isCredentialExist = (config.Credentials != null) ? true : false;
-            switch (config.EndpointType)
-            {
-                // An on-premises Microsoft Dynamics CRM server deployment. 
-                case AuthenticationProviderType.ActiveDirectory:
-                    // Uses credentials from windows credential manager for earlier saved configuration.
-                    if (isCredentialExist && !String.IsNullOrWhiteSpace(config.OrganizationName))
-                    {
-                        domain = config.Credentials.Windows.ClientCredential.Domain;
-                        userName = config.Credentials.Windows.ClientCredential.UserName;
-                        if (String.IsNullOrWhiteSpace(config.Credentials.Windows.ClientCredential.Password))
-                        {
-                            Console.Write("\nEnter domain\\username: ");
-                            Console.WriteLine(
-                            config.Credentials.Windows.ClientCredential.Domain + "\\"
-                            + config.Credentials.Windows.ClientCredential.UserName);
-
-                            Console.Write("       Enter Password: ");
-                            password = ReadPassword();
-                        }
-                        else
-                        {
-                            password = config.Credentials.Windows.ClientCredential.SecurePassword;
-                        }
-                    }
-                    // Uses default credentials saved in windows credential manager for current organization.
-                    else if (!isCredentialExist && !String.IsNullOrWhiteSpace(config.OrganizationName))
-                    {
-                        return null;
-                    }
-                    // Prompts users to enter credential for current organization.
-                    else
-                    {
-                        String[] domainAndUserName;
-                        do
-                        {
-                            Console.Write("\nEnter domain\\username: ");
-                            domainAndUserName = "GEODEV\\sa_dev_k2server".Split('\\');
-
-                            // If user do not choose to enter user name, 
-                            // then try to use default credential from windows credential manager.
-                            if (domainAndUserName.Length == 1 && String.IsNullOrWhiteSpace(domainAndUserName[0]))
-                            {
-                                return null;
-                            }
-                        }
-                        while (domainAndUserName.Length != 2 || String.IsNullOrWhiteSpace(domainAndUserName[0])
-                            || String.IsNullOrWhiteSpace(domainAndUserName[1]));
-
-                        domain = domainAndUserName[0];
-                        userName = domainAndUserName[1];
-
-                        Console.Write("       Enter Password: ");
-                        password = ReadPassword();
-                    }
-                    if (null != password)
-                    {
-                        credentials.Windows.ClientCredential =
-                            new System.Net.NetworkCredential(userName, password, domain);
-                    }
-                    else
-                    {
-                        credentials.Windows.ClientCredential = null;
-                    }
-
-                    break;
-                // A Microsoft Dynamics CRM Online server deployment. 
-                case AuthenticationProviderType.LiveId:
-                // An internet-facing deployment (IFD) of Microsoft Dynamics CRM.          
-                case AuthenticationProviderType.Federation:
-                // Managed Identity/Federated Identity users using Microsoft Office 365.
-                case AuthenticationProviderType.OnlineFederation:
-                    // Use saved credentials.
-                    if (isCredentialExist)
-                    {
-                        userName = config.Credentials.UserName.UserName;
-                        if (String.IsNullOrWhiteSpace(config.Credentials.UserName.Password))
-                        {
-                            Console.Write("\n Enter Username: ");
-                            Console.WriteLine(config.Credentials.UserName.UserName);
-
-                            Console.Write(" Enter Password: ");
-                            password = ReadPassword();
-                        }
-                        else
-                        {
-                            password = ConvertToSecureString(config.Credentials.UserName.Password);
-                        }
-                    }
-                    // For OnlineFederation environments, initially try to authenticate with the current UserPrincipalName
-                    // for single sign-on scenario.
-                    else if (config.EndpointType == AuthenticationProviderType.OnlineFederation 
-                        && config.AuthFailureCount == 0 
-                        && !String.IsNullOrWhiteSpace(UserPrincipal.Current.UserPrincipalName))
-                    {
-                        config.UserPrincipalName = UserPrincipal.Current.UserPrincipalName;
-                        return null;
-                    }
-                    // Otherwise request username and password.
-                    else
-                    {
-                        config.UserPrincipalName = String.Empty;
-                        if (config.EndpointType == AuthenticationProviderType.LiveId)
-                            Console.Write("\n Enter Microsoft account: ");
-                        else
-                            Console.Write("\n Enter Username: ");
-                        userName = "SA_DEV_K2server";
-                        if (string.IsNullOrWhiteSpace(userName))
-                        {
-                            return null;
-                        }
-
-                        Console.Write(" Enter Password: ");
-                        password = ReadPassword();
-                    }
-                    credentials.UserName.UserName = userName;
-                    credentials.UserName.Password = ConvertToUnsecureString(password);
-                    break;                    
-                default:
-                    credentials = null;
-                    break;
-            }
-            return credentials;
-        }
-
-        /// <summary>
-        /// Prompts user to enter password in console window 
-        /// and capture the entered password into SecureString.
-        /// </summary>
-        /// <returns>Password stored in a secure string.</returns>
-        public static SecureString ReadPassword()
-        {
-            SecureString ssPassword = new SecureString();
-
-            //TODO: get rid of this ridiculas stuff
-            ssPassword.AppendChar('K');
-            ssPassword.AppendChar('2');
-            ssPassword.AppendChar('B');
-            ssPassword.AppendChar('l');
-            ssPassword.AppendChar('4');
-            ssPassword.AppendChar('c');
-            ssPassword.AppendChar('k');
-            ssPassword.AppendChar('P');
-            ssPassword.AppendChar('3');
-            ssPassword.AppendChar('4');
-            ssPassword.AppendChar('r');
-            ssPassword.AppendChar('l');
-            ssPassword.AppendChar('S');
-
-
-            ////////ConsoleKeyInfo info = Console.ReadKey(true);
-            ////////while (info.Key != ConsoleKey.Enter)
-            ////////{
-            ////////    if (info.Key == ConsoleKey.Backspace)
-            ////////    {
-            ////////        if (ssPassword.Length != 0)
-            ////////        {
-            ////////            ssPassword.RemoveAt(ssPassword.Length - 1);
-            ////////            Console.Write("\b \b");     // erase last char
-            ////////        }
-            ////////    }
-            ////////    else if (info.KeyChar >= ' ')           // no control chars
-            ////////    {
-            ////////        ssPassword.AppendChar(info.KeyChar);
-            ////////        Console.Write("*");
-            ////////    }
-            ////////    info = Console.ReadKey(true);
-            ////////}
-
-            ////////Console.WriteLine();
-            ////////Console.WriteLine();
-
-            // Lock the secure string password.
-            ssPassword.MakeReadOnly();
-
-            return ssPassword;
-        }
-
+        
         /// <summary>
         /// Generic method to obtain discovery/organization service proxy instance.
         /// </summary>
@@ -770,24 +353,7 @@ namespace K2Community.CSP.CRM
                 ServiceConfigurationFactory.CreateManagement<TService>(
                 serviceUri);
 
-            if (isOrgServiceRequest)
-            {
-                if (currentConfig.OrganizationTokenResponse == null)
-                {
-                    currentConfig.OrganizationServiceManagement =
-                        (IServiceManagement<IOrganizationService>)serviceManagement;
-                }
-            }
-            // Set the EndpointType in the current Configuration object 
-            // while adding new configuration using discovery service proxy.
-            else
-            {
-                // Get the EndpointType.
-                currentConfig.EndpointType = serviceManagement.AuthenticationType;
-                // Get the logon credentials.
-                currentConfig.Credentials = GetUserLogonCredentials(currentConfig);
-            }
-
+            
             // Set the credentials.
             AuthenticationCredentials authCredentials = new AuthenticationCredentials();
 
@@ -823,7 +389,6 @@ namespace K2Community.CSP.CRM
                    if (isOrgServiceRequest)
                 {
                     // Set SecurityTokenResponse for the current organization.
-                    currentConfig.OrganizationTokenResponse = tokenCredentials.SecurityTokenResponse;
                     // Set classType to ManagedTokenOrganizationServiceProxy.
                     classType = typeof(ManagedTokenOrganizationServiceProxy);
 
@@ -874,149 +439,10 @@ namespace K2Community.CSP.CRM
                    });
         }
 
-        /// <summary>
-        /// Convert SecureString to unsecure string.
-        /// </summary>
-        /// <param name="securePassword">Pass SecureString for conversion.</param>
-        /// <returns>unsecure string</returns>
-        public static String ConvertToUnsecureString(SecureString securePassword)
-        {
-            if (securePassword == null)
-                throw new ArgumentNullException("securePassword");
-
-            IntPtr unmanagedString = IntPtr.Zero;
-            try
-            {
-                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
-                return Marshal.PtrToStringUni(unmanagedString);
-            }
-            finally
-            {
-                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
-            }
-        }
-
-        /// <summary>
-        /// Convert unsecure string to SecureString.
-        /// </summary>
-        /// <param name="password">Pass unsecure string for conversion.</param>
-        /// <returns>SecureString</returns>
-        public static SecureString ConvertToSecureString(string password)
-        {
-            if (password == null)
-                throw new ArgumentNullException("password");
-
-            var securePassword = new SecureString();
-            foreach (char c in password)
-                securePassword.AppendChar(c);
-            securePassword.MakeReadOnly();
-            return securePassword;
-        }
         #endregion Public methods
 
         #region Protected methods
-
-        /// <summary>
-        /// Obtains the name and port of the server running the Microsoft Dynamics CRM
-        /// Discovery service.
-        /// </summary>
-        /// <returns>The server's network name and optional TCP/IP port.</returns>
-        protected virtual String GetServerAddress(out bool ssl)
-        {
-            ssl = false;
-
-            Console.Write("Enter a CRM server name and port [crm.dynamics.com]: ");
-            //TODO:
-            String server = "crm/GeodesysProto12";
-
-            if (server.EndsWith(".dynamics.com") || String.IsNullOrWhiteSpace(server))
-            {
-                ssl = true;
-            }
-            else
-            {
-                Console.Write("Is this server configured for Secure Socket Layer (https) (y/n) [n]: ");
-                //TODO:
-                String answer = "n";
-
-                if (answer == "y" || answer == "Y")
-                    ssl = true;
-            }
-
-            return server;
-        }
-
-        /// <summary>
-        /// Is this organization provisioned in Microsoft Office 365?
-        /// </summary>
-        /// <param name="server">The server's network name.</param>
-        protected virtual Boolean GetOrgType(String server)
-        {
-            Boolean isO365Org = false;
-            if (String.IsNullOrWhiteSpace(server))
-                return isO365Org;
-            if (server.IndexOf('.') == -1)
-                return isO365Org;
-
-            Console.Write("Is this organization provisioned in Microsoft Office 365 (y/n) [n]: ");
-            String answer = "n";
-
-            if (answer == "y" || answer == "Y")
-                isO365Org = true;
-
-            return isO365Org;
-        }
-
-        /// <summary>
-        /// Obtains the web address (Uri) of the target organization.
-        /// </summary>
-        /// <returns>Uri of the organization service or an empty string.</returns>
-        protected virtual Uri GetOrganizationAddress()
-        {
-            using (DiscoveryServiceProxy serviceProxy = GetDiscoveryProxy())
-            {
-                // Obtain organization information from the Discovery service. 
-                if (serviceProxy != null)
-                {
-                    // Obtain information about the organizations that the system user belongs to.
-                    OrganizationDetailCollection orgs = DiscoverOrganizations(serviceProxy);
-
-                    if (orgs.Count > 0)
-                    {
-                        Console.WriteLine("\nList of organizations that you belong to:");
-                        for (int n = 0; n < orgs.Count; n++)
-                        {
-                            Console.Write("\n({0}) {1} ({2})\t", n + 1, orgs[n].FriendlyName, orgs[n].UrlName);
-                        }
-
-                        Console.Write("\n\nSpecify an organization number (1-{0}) [1]: ", orgs.Count);
-                        String input = "1";
-                        if (input == String.Empty)
-                        {
-                            input = "1";
-                        }
-                        int orgNumber;
-                        Int32.TryParse(input, out orgNumber);
-                        if (orgNumber > 0 && orgNumber <= orgs.Count)
-                        {
-                            config.OrganizationName = orgs[orgNumber - 1].FriendlyName;
-                            // Return the organization Uri.
-                            return new System.Uri(orgs[orgNumber - 1].Endpoints[EndpointType.OrganizationService]);
-                        }
-                        else
-                            throw new InvalidOperationException("The specified organization does not exist.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nYou do not belong to any organizations on the specified server.");
-                        return new System.Uri(String.Empty);
-                    }
-                }
-                else
-                    throw new InvalidOperationException("An invalid server name was specified.");
-            }
-        }        
-
+        
         /// <summary>
         /// Get the device credentials by either loading from the local cache 
         /// or request new device credentials by registering the device.
@@ -1027,46 +453,10 @@ namespace K2Community.CSP.CRM
             return Microsoft.Crm.Services.Utility.DeviceIdManager.LoadOrRegisterDevice();
         }
 
-        /// <summary>
-        /// Get the discovery service proxy based on existing configuration data.
-        /// Added new way of getting discovery proxy.
-        /// Also preserving old way of getting discovery proxy to support old scenarios.
-        /// </summary>
-        /// <returns>An instance of DiscoveryServiceProxy</returns>
-        private DiscoveryServiceProxy GetDiscoveryProxy()
-        {            
-            try
-            {
-                // Obtain the discovery service proxy.
-                DiscoveryServiceProxy discoveryProxy = GetProxy<IDiscoveryService, DiscoveryServiceProxy>(this.config);
-                // Checking authentication by invoking some SDK methods.
-                discoveryProxy.Execute(new RetrieveOrganizationsRequest());
-                return discoveryProxy;
-            }
-            catch (System.ServiceModel.Security.SecurityAccessDeniedException ex)
-            {
-                    // If authentication failed using current UserPrincipalName, 
-                    // request UserName and Password to try to authenticate using user credentials.
-                    if (!String.IsNullOrWhiteSpace(config.UserPrincipalName) && 
-                        ex.Message.Contains("Access is denied."))
-                    {
-                        config.AuthFailureCount += 1;
-                    }
-                    else
-                    {
-                        throw ex;
-                    }
-            }
-            // You can also catch other exceptions to handle a specific situation in your code, for example, 
-            //      System.ServiceModel.Security.ExpiredSecurityTokenException
-            //      System.ServiceModel.Security.MessageSecurityException
-            //      System.ServiceModel.Security.SecurityNegotiationException                
+        #endregion 
 
-            // Second trial to obtain the discovery service proxy in case of single sign-on failure.
-            return GetProxy<IDiscoveryService, DiscoveryServiceProxy>(this.config);
+        #region Private methods
 
-        }
-        
         /// <summary>
         /// Verify passed strings with the supported AuthenticationProviderType.
         /// </summary>
@@ -1148,87 +538,6 @@ namespace K2Community.CSP.CRM
             return result;
         }
 
-        /// <summary>
-        /// Parse ClientCredentials into XML node. 
-        /// </summary>
-        /// <param name="clientCredentials">ClientCredentials type.</param>
-        /// <param name="endpointType">AuthenticationProviderType of the credentials.</param>
-        /// <param name="target">Target is the key with which associated credentials can be fetched.</param>
-        /// <returns>XML node containing credentials data.</returns>
-        private XElement ParseOutCredentials(ClientCredentials clientCredentials, 
-            AuthenticationProviderType endpointType, String target)
-        {
-            if (clientCredentials != null)
-            {
-                Credential cred = CredentialManager.ReadCredentials(target);
-                switch (endpointType)
-                {
-                    case AuthenticationProviderType.ActiveDirectory:
-                        if (cred == null)
-                        {
-                            // Add entry in windows credential manager for future use.
-                            if (!String.IsNullOrWhiteSpace(clientCredentials.Windows.ClientCredential.Password))
-                            {
-                                CredentialManager.WriteCredentials(target,
-                                    new Credential(clientCredentials.Windows.ClientCredential.Domain + "\\"
-                                        + clientCredentials.Windows.ClientCredential.UserName,
-                                        clientCredentials.Windows.ClientCredential.Password),
-                                    true);
-                            }
-                        }
-                        else
-                        { 
-                            // Replace if the password has been changed.
-                            if (!clientCredentials.Windows.ClientCredential.Password.Equals(cred.Password))
-                            {
-                                CredentialManager.DeleteCredentials(target, false);
-                                CredentialManager.WriteCredentials(target,
-                                    new Credential(clientCredentials.Windows.ClientCredential.Domain + "\\"
-                                        + clientCredentials.Windows.ClientCredential.UserName,
-                                        clientCredentials.Windows.ClientCredential.Password),
-                                    true);
-                            }
-                        }
-                        return new XElement("Credentials",
-                            new XElement("UserName", clientCredentials.Windows.ClientCredential.UserName),
-                            new XElement("Domain", clientCredentials.Windows.ClientCredential.Domain)
-                            );
-                    case AuthenticationProviderType.LiveId:                        
-                    case AuthenticationProviderType.Federation:                        
-                    case AuthenticationProviderType.OnlineFederation:
-                        if (cred == null)
-                        {
-                            // Add entry in windows credential manager for future use.
-                            if (!String.IsNullOrWhiteSpace(clientCredentials.UserName.Password))
-                            {
-                                CredentialManager.WriteCredentials(target,
-                                    new Credential(clientCredentials.UserName.UserName,
-                                        clientCredentials.UserName.Password),
-                                    true);
-                            }
-                        }
-                        else
-                        {
-                            // Replace if the password has been changed.
-                            if (!clientCredentials.UserName.Password.Equals(cred.Password))
-                            {
-                                CredentialManager.DeleteCredentials(target, false);
-                                CredentialManager.WriteCredentials(target,
-                                   new Credential(clientCredentials.UserName.UserName,
-                                       clientCredentials.UserName.Password),
-                                   true);
-                            }
-                        }
-                        return new XElement("Credentials",
-                           new XElement("UserName", clientCredentials.UserName.UserName)
-                           );
-                    default:
-                        break;
-                }
-            }          
-
-            return new XElement("Credentials", "");
-        }
         #endregion Private methods
 
         #region Private Classes
@@ -1331,8 +640,7 @@ namespace K2Community.CSP.CRM
             securePassword.MakeReadOnly();
             return securePassword;
         }
-        
-        
+             
         /// <summary>
         /// This structure maps to the CREDENTIAL structure used by native code. We can use this to marshal our values.
         /// </summary>

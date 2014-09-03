@@ -1,0 +1,7 @@
+E:\tfs\K2Community.CSP.CRM\K2Community.CSP.CRM\bin\Release\SQLScriptToRegisterProvider.sql
+E:\tfs\K2Community.CSP.CRM\K2Community.CSP.CRM\bin\Release\K2Community.CSP.CRM.dll
+E:\tfs\K2Community.CSP.CRM\K2Community.CSP.CRM\bin\Release\K2Community.CSP.CRM.pdb
+E:\tfs\K2Community.CSP.CRM\K2Community.CSP.CRM\bin\Release\SourceCode.HostClientAPI.dll
+E:\tfs\K2Community.CSP.CRM\K2Community.CSP.CRM\obj\Release\K2Community.CSP.CRM.dll
+E:\tfs\K2Community.CSP.CRM\K2Community.CSP.CRM\obj\Release\K2Community.CSP.CRM.pdb
+E:\tfs\K2Community.CSP.CRM\K2Community.CSP.CRM\obj\Release\K2Community.CSP.CRM.csprojResolveAssemblyReference.cache
